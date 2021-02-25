@@ -3,7 +3,7 @@
     "description": "This package helps to create zoom meeting through api",
     "type": "librart",
     "require": {
-        "firebase/php-jwt": "9999999-dev"
+        "firebase/php-jwt": "^5.2"
     },
     "license": "mit",
     "authors": [
