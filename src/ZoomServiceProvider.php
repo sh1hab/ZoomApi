@@ -25,7 +25,7 @@ class ZoomServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->publishes([
-            __DIR__.'/database/migrations.php' => config_path('database/migrations'),
+            __DIR__.'/database/migrations' => config_path('database/migrations'),
         ]);
     }
 
