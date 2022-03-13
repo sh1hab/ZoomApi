@@ -14,7 +14,9 @@ class Api implements ApiInterface
     public $jwt;
     public $headers;
 
-    public function __construct(ClientInterface $client=null)
+    protected $url = "https://api.zoom.us/v2/";
+
+    public function __construct(ClientInterface $client = null)
     {
         $this->client = $client;
         $this->jwt = $this->generateToken();
@@ -27,8 +29,8 @@ class Api implements ApiInterface
 
     public function generateToken(): string
     {
-        $key = getenv('ZOOM_API_KEY');
-        $secret = getenv('ZOOM_API_SECRET');
+        $key = config('services.zoom.key');
+        $secret = config('services.zoom.secret');
         $payload = [
             'iss' => $key,
             'exp' => strtotime('+1 minute'),
@@ -37,17 +39,11 @@ class Api implements ApiInterface
         return JWT::encode($payload, $secret, 'HS256');
     }
 
-    private function retrieveUrl()
-    {
-        return getenv('ZOOM_API_URL');
-    }
-
     public function get(array $query = []): Response
     {
         $path = 'users/me/meetings';
-        $url = $this->retrieveUrl();
         $request = $this->request();
-        return $request->get($url . $path, $query);
+        return $request->get($this->url . $path, $query);
     }
 
     public function post(array $body = []): Response
