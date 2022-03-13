@@ -48,24 +48,21 @@ class Api implements ApiInterface
 
     public function post(array $body = []): Response
     {
-        $url = $this->retrieveUrl();
         $path = 'users/me/meetings';
         $request = $this->request();
-        return $request->post($url . $path, $body);
+        return $request->post($this->url . $path, $body);
     }
 
     public function patch(string $path, array $body = []): Response
     {
-        $url = $this->retrieveUrl();
         $request = $this->request();
-        return $request->patch($url . $path, $body);
+        return $request->patch($this->url . $path, $body);
     }
 
     public function delete(string $path, array $body = []): Response
     {
-        $url = $this->retrieveUrl();
         $request = $this->request();
-        return $request->delete($url . $path, $body);
+        return $request->delete($this->url . $path, $body);
     }
 
     public function request(): PendingRequest
