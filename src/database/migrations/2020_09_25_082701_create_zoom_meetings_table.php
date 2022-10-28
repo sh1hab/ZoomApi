@@ -25,6 +25,8 @@ class CreateZoomMeetingsTable extends Migration
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
             $table->string('call_duration')->nullable();
+            $table->integer('number_of_participants')->nullable();
+            $table->string('topic')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

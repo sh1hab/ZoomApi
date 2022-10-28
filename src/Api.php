@@ -27,7 +27,7 @@ class Api implements ApiInterface
         ];
     }
 
-    public function generateToken(): string
+    private function generateToken(): string
     {
         $key = config('services.zoom.key');
         $secret = config('services.zoom.secret');
@@ -39,27 +39,27 @@ class Api implements ApiInterface
         return JWT::encode($payload, $secret, 'HS256');
     }
 
-    public function get(array $query = []): Response
+    protected function get(array $query = []): Response
     {
         $path = 'users/me/meetings';
         $request = $this->request();
         return $request->get($this->url . $path, $query);
     }
 
-    public function post(array $body = []): Response
+    protected function post(array $body = []): Response
     {
         $path = 'users/me/meetings';
         $request = $this->request();
         return $request->post($this->url . $path, $body);
     }
 
-    public function patch(string $path, array $body = []): Response
+    protected function patch(string $path, array $body = []): Response
     {
         $request = $this->request();
         return $request->patch($this->url . $path, $body);
     }
 
-    public function delete(string $path, array $body = []): Response
+    protected function delete(string $path, array $body = []): Response
     {
         $request = $this->request();
         return $request->delete($this->url . $path, $body);
