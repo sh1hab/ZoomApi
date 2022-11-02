@@ -39,27 +39,27 @@ class Api implements ApiInterface
         return JWT::encode($payload, $secret, 'HS256');
     }
 
-    protected function get(array $query = []): Response
+    public function get(array $query = []): Response
     {
         $path = 'users/me/meetings';
         $request = $this->request();
         return $request->get($this->url . $path, $query);
     }
 
-    protected function post(array $body = []): Response
+    public function post(array $body = []): Response
     {
         $path = 'users/me/meetings';
         $request = $this->request();
         return $request->post($this->url . $path, $body);
     }
 
-    protected function patch(string $path, array $body = []): Response
+    public function patch(string $path, array $body = []): Response
     {
         $request = $this->request();
         return $request->patch($this->url . $path, $body);
     }
 
-    protected function delete(string $path, array $body = []): Response
+    public function delete(string $path, array $body = []): Response
     {
         $request = $this->request();
         return $request->delete($this->url . $path, $body);
